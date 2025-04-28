@@ -1,86 +1,120 @@
-import { Card, CardContent } from "./card";
 import { Button } from "./button";
-import { DollarSign, HandHeart } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./tabs";
+import { Card, CardContent } from "./card";
+import { Banknote, UserPlus, HandHeart, Lightbulb, PenTool } from "lucide-react";
 
 const HelpSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-primary text-primary-foreground" id="help">
+    <section id="как-помочь" className="py-20 bg-primary text-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Как помочь</h2>
-          <div className="w-20 h-1 bg-secondary mx-auto mb-6"></div>
-          <p className="text-lg max-w-3xl mx-auto text-primary-foreground/90">
-            Ваша поддержка помогает нам расширять наши ресурсы и оказывать более эффективную помощь жертвам насилия.
+          <div className="w-24 h-1 bg-secondary mx-auto mb-8"></div>
+          <p className="text-lg max-w-3xl mx-auto opacity-90">
+            Ваша поддержка имеет огромное значение для нашей работы. 
+            Есть несколько способов, которыми вы можете помочь нам помогать другим.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {/* Пожертвования */}
-          <Card className="bg-white/10 border-0 backdrop-blur-sm animate-fade-in">
-            <CardContent className="p-8">
-              <div className="flex flex-col items-center text-center">
-                <div className="bg-secondary/20 p-5 rounded-full mb-6">
-                  <DollarSign className="h-12 w-12 text-secondary" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Пожертвовать</h3>
-                <p className="mb-6">
-                  Ваши пожертвования помогают нам создавать новые образовательные материалы, 
-                  проводить тренинги для специалистов и расширять нашу базу ресурсов.
+        <Tabs defaultValue="donate" className="max-w-4xl mx-auto">
+          <TabsList className="grid w-full grid-cols-2 bg-primary/20 mb-8">
+            <TabsTrigger 
+              value="donate" 
+              className="data-[state=active]:bg-secondary data-[state=active]:text-black py-3 text-lg"
+            >
+              Пожертвовать
+            </TabsTrigger>
+            <TabsTrigger 
+              value="volunteer" 
+              className="data-[state=active]:bg-secondary data-[state=active]:text-black py-3 text-lg"
+            >
+              Волонтерство
+            </TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="donate" className="animate-fade-in">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <img 
+                  src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Пожертвования помогают" 
+                  className="rounded-lg shadow-xl w-full h-auto object-cover"
+                />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold mb-4">Ваши пожертвования меняют жизни</h3>
+                <p className="mb-6 opacity-90">
+                  Каждое пожертвование помогает нам развивать ресурсы для специалистов, 
+                  обеспечивать доступ к образовательным материалам и поддерживать работу форума.
                 </p>
-                <ul className="mb-6 text-left">
-                  <li className="flex items-start mb-2">
-                    <span className="text-secondary mr-2">✓</span>
-                    <span>Финансирование исследований о методах помощи</span>
-                  </li>
-                  <li className="flex items-start mb-2">
-                    <span className="text-secondary mr-2">✓</span>
-                    <span>Создание новых учебных материалов</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-secondary mr-2">✓</span>
-                    <span>Поддержка работы платформы и форума</span>
-                  </li>
-                </ul>
-                <Button variant="secondary" size="lg" className="w-full">
+                
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-start">
+                    <Banknote className="w-6 h-6 text-secondary mr-3 mt-1 flex-shrink-0" />
+                    <p>100% ваших средств идут на прямую помощь и развитие платформы</p>
+                  </div>
+                  <div className="flex items-start">
+                    <HandHeart className="w-6 h-6 text-secondary mr-3 mt-1 flex-shrink-0" />
+                    <p>Регулярные отчеты о том, как используются средства</p>
+                  </div>
+                  <div className="flex items-start">
+                    <Lightbulb className="w-6 h-6 text-secondary mr-3 mt-1 flex-shrink-0" />
+                    <p>Возможность выбрать конкретное направление для поддержки</p>
+                  </div>
+                </div>
+                
+                <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 text-lg px-8 py-3 w-full md:w-auto">
                   Сделать пожертвование
                 </Button>
               </div>
-            </CardContent>
-          </Card>
-
-          {/* Волонтерство */}
-          <Card className="bg-white/10 border-0 backdrop-blur-sm animate-fade-in" style={{ animationDelay: "0.1s" }}>
-            <CardContent className="p-8">
-              <div className="flex flex-col items-center text-center">
-                <div className="bg-secondary/20 p-5 rounded-full mb-6">
-                  <HandHeart className="h-12 w-12 text-secondary" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Волонтерство</h3>
-                <p className="mb-6">
-                  Станьте частью нашей команды волонтеров и внесите свой вклад в помощь 
-                  жертвам насилия, используя свои навыки и опыт.
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="volunteer" className="animate-fade-in">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <img 
+                  src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Волонтеры за работой" 
+                  className="rounded-lg shadow-xl w-full h-auto object-cover"
+                />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold mb-4">Станьте волонтером</h3>
+                <p className="mb-6 opacity-90">
+                  Мы всегда ищем профессионалов, готовых поделиться своим опытом, 
+                  временем и знаниями для поддержки нашей миссии.
                 </p>
-                <ul className="mb-6 text-left">
-                  <li className="flex items-start mb-2">
-                    <span className="text-secondary mr-2">✓</span>
-                    <span>Участие в разработке материалов</span>
-                  </li>
-                  <li className="flex items-start mb-2">
-                    <span className="text-secondary mr-2">✓</span>
-                    <span>Модерация форума экспертов</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-secondary mr-2">✓</span>
-                    <span>Помощь в организации мероприятий</span>
-                  </li>
-                </ul>
-                <Button variant="outline" size="lg" className="w-full border-white text-white hover:bg-white/10">
+                
+                <div className="space-y-6 mb-8">
+                  <Card className="bg-primary/20 border-none">
+                    <CardContent className="p-4 flex items-start">
+                      <UserPlus className="w-6 h-6 text-secondary mr-3 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold mb-1">Присоединитесь к команде</h4>
+                        <p className="opacity-90 text-sm">Станьте частью сообщества экспертов, помогающих жертвам насилия</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card className="bg-primary/20 border-none">
+                    <CardContent className="p-4 flex items-start">
+                      <PenTool className="w-6 h-6 text-secondary mr-3 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold mb-1">Делитесь экспертизой</h4>
+                        <p className="opacity-90 text-sm">Пишите статьи, проводите вебинары или консультируйте коллег</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+                
+                <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 text-lg px-8 py-3 w-full md:w-auto">
                   Стать волонтером
                 </Button>
               </div>
-            </CardContent>
-          </Card>
-        </div>
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </section>
   );

@@ -1,85 +1,87 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { Button } from "./button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Heart } from "lucide-react";
 
 const Navbar = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-primary text-primary-foreground sticky top-0 z-50 shadow-md">
-      <div className="container mx-auto px-4 py-3">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <img src="/logo-b.svg" alt="Логотип SOS" className="h-8 w-8" />
-            <span className="font-bold text-xl">SOS Жертвы Насилия</span>
-          </div>
+    <nav className="bg-primary text-primary-foreground py-4 sticky top-0 z-50 shadow-md">
+      <div className="container mx-auto px-4 flex justify-between items-center">
+        {/* Logo */}
+        <div className="flex items-center">
+          <Heart className="h-6 w-6 text-secondary mr-2" />
+          <span className="text-xl font-bold">SOS</span>
+        </div>
 
-          {/* Desktop menu */}
-          <div className="hidden md:flex items-center space-x-6">
-            <Link to="/" className="hover:text-secondary transition-colors">Главная</Link>
-            <Link to="/about" className="hover:text-secondary transition-colors">О нас</Link>
-            <Link to="/resources" className="hover:text-secondary transition-colors">Ресурсы</Link>
-            <Link to="/contact" className="hover:text-secondary transition-colors">Контакты</Link>
-            <Button variant="secondary" size="sm">
-              Помочь
-            </Button>
-          </div>
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex space-x-6">
+          <a href="#о-нас" className="hover:text-secondary transition-colors">О нас</a>
+          <a href="#особенности" className="hover:text-secondary transition-colors">Особенности</a>
+          <a href="#как-помочь" className="hover:text-secondary transition-colors">Как помочь</a>
+          <a href="#ресурсы" className="hover:text-secondary transition-colors">Ресурсы</a>
+          <a href="#отзывы" className="hover:text-secondary transition-colors">Отзывы</a>
+        </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={toggleMobileMenu}
-              className="text-primary-foreground hover:bg-accent"
+        {/* CTA Button */}
+        <Button className="hidden md:block bg-secondary text-secondary-foreground hover:bg-secondary/90">
+          Поддержать
+        </Button>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden text-white"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-primary text-primary-foreground py-4 px-6 absolute w-full shadow-lg animate-fade-in">
+          <div className="flex flex-col space-y-4">
+            <a 
+              href="#о-нас" 
+              className="hover:text-secondary transition-colors"
+              onClick={() => setIsMenuOpen(false)}
             >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              О нас
+            </a>
+            <a 
+              href="#особенности" 
+              className="hover:text-secondary transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Особенности
+            </a>
+            <a 
+              href="#как-помочь" 
+              className="hover:text-secondary transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Как помочь
+            </a>
+            <a 
+              href="#ресурсы" 
+              className="hover:text-secondary transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Ресурсы
+            </a>
+            <a 
+              href="#отзывы" 
+              className="hover:text-secondary transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Отзывы
+            </a>
+            <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 w-full">
+              Поддержать
             </Button>
           </div>
         </div>
-
-        {/* Mobile menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden pt-4 pb-3 space-y-3 animate-fade-in">
-            <Link 
-              to="/" 
-              className="block px-3 py-2 rounded-md hover:bg-accent transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Главная
-            </Link>
-            <Link 
-              to="/about" 
-              className="block px-3 py-2 rounded-md hover:bg-accent transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              О нас
-            </Link>
-            <Link 
-              to="/resources" 
-              className="block px-3 py-2 rounded-md hover:bg-accent transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Ресурсы
-            </Link>
-            <Link 
-              to="/contact" 
-              className="block px-3 py-2 rounded-md hover:bg-accent transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Контакты
-            </Link>
-            <Button variant="secondary" className="w-full" onClick={() => setMobileMenuOpen(false)}>
-              Помочь
-            </Button>
-          </div>
-        )}
-      </div>
+      )}
     </nav>
   );
 };
