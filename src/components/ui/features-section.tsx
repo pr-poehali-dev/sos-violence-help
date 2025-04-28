@@ -1,82 +1,78 @@
-import { 
-  MessageSquare, 
-  Scale, 
-  Book, 
-  Building, 
-  Heart 
-} from "lucide-react";
+import { Card, CardContent } from "./card";
+import { MessageCircle, Book, FileText, Building, Heart } from "lucide-react";
 import { Button } from "./button";
 
 const FeaturesSection = () => {
+  const features = [
+    {
+      icon: <MessageCircle className="h-12 w-12 text-primary" />,
+      title: "Форум экспертов",
+      description: "Общайтесь с коллегами, делитесь знаниями и обсуждайте лучшие практики."
+    },
+    {
+      icon: <Book className="h-12 w-12 text-primary" />,
+      title: "Законодательная основа",
+      description: "Будьте в курсе всех важных законов и правовых норм."
+    },
+    {
+      icon: <FileText className="h-12 w-12 text-primary" />,
+      title: "Профессиональные материалы",
+      description: "Доступ к статьям, исследованиям и учебным пособиям."
+    },
+    {
+      icon: <Building className="h-12 w-12 text-primary" />,
+      title: "База данных НПО",
+      description: "Найдите надежные организации, которые помогают жертвам насилия."
+    },
+    {
+      icon: <Heart className="h-12 w-12 text-primary" />,
+      title: "Присоединяйтесь к нам",
+      description: "Помогите нам пожертвованием или станьте волонтером."
+    }
+  ];
+
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 md:py-24 bg-white" id="features">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Ключевые особенности</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Мы предоставляем широкий спектр услуг и ресурсов для помощи специалистам,
-            работающим с жертвами насилия.
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ключевые особенности</h2>
+          <div className="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+          <p className="text-lg max-w-3xl mx-auto">
+            Наша платформа предоставляет все необходимые инструменты для эффективной помощи жертвам насилия.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-          <FeatureCard 
-            icon={<MessageSquare size={24} />}
-            title="Форум экспертов"
-            description="Общайтесь с коллегами, делитесь знаниями и обсуждайте лучшие практики в безопасном пространстве."
-          />
-          
-          <FeatureCard 
-            icon={<Scale size={24} />}
-            title="Законодательная основа"
-            description="Будьте в курсе всех важных законов и правовых норм, защищающих права жертв насилия."
-          />
-          
-          <FeatureCard 
-            icon={<Book size={24} />}
-            title="Профессиональные материалы"
-            description="Доступ к статьям, исследованиям и учебным пособиям от ведущих экспертов в области."
-          />
-          
-          <FeatureCard 
-            icon={<Building size={24} />}
-            title="База данных НПО"
-            description="Найдите надежные организации, которые помогают жертвам насилия в вашем регионе."
-          />
-          
-          <FeatureCard 
-            icon={<Heart size={24} />}
-            title="Присоединяйтесь"
-            description="Помогите нам пожертвованием или станьте волонтером нашей организации."
-            hasButton
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {features.slice(0, 3).map((feature, index) => (
+            <div key={index} className="flex flex-col items-center text-center animate-fade-in" style={{ animationDelay: `${0.1 * index}s` }}>
+              <div className="bg-primary/5 p-5 rounded-full mb-6">
+                {feature.icon}
+              </div>
+              <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+              <p className="text-muted-foreground">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 max-w-3xl mx-auto">
+          {features.slice(3, 5).map((feature, index) => (
+            <div key={index + 3} className="flex flex-col items-center text-center animate-fade-in" style={{ animationDelay: `${0.1 * (index + 3)}s` }}>
+              <div className="bg-primary/5 p-5 rounded-full mb-6">
+                {feature.icon}
+              </div>
+              <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+              <p className="text-muted-foreground">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+        
+        <div className="mt-16 text-center">
+          <Button variant="secondary" size="lg">
+            Исследовать все ресурсы
+          </Button>
         </div>
       </div>
     </section>
-  );
-};
-
-interface FeatureCardProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  hasButton?: boolean;
-}
-
-const FeatureCard = ({ icon, title, description, hasButton }: FeatureCardProps) => {
-  return (
-    <div className="flex flex-col items-start">
-      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-        <div className="text-primary">{icon}</div>
-      </div>
-      <h3 className="text-xl font-semibold text-primary mb-3">{title}</h3>
-      <p className="text-muted-foreground mb-4">{description}</p>
-      {hasButton && (
-        <Button variant="outline" className="mt-2">
-          Узнать больше
-        </Button>
-      )}
-    </div>
   );
 };
 

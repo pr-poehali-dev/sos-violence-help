@@ -1,60 +1,74 @@
-import { Shield, Heart, Users, LineChart, Sparkles } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./card";
+import { Card, CardContent } from "./card";
+import { Shield, Lock, BookOpen, Users, HeartHandshake } from "lucide-react";
 
 const AboutSection = () => {
+  const values = [
+    {
+      icon: <Shield className="h-10 w-10 text-secondary" />,
+      title: "Честность",
+      description: "Мы предоставляем точную и проверенную информацию, основанную на фактах и исследованиях."
+    },
+    {
+      icon: <Lock className="h-10 w-10 text-secondary" />,
+      title: "Конфиденциальность",
+      description: "Мы гарантируем конфиденциальность и безопасность всех наших пользователей."
+    },
+    {
+      icon: <BookOpen className="h-10 w-10 text-secondary" />,
+      title: "Опыт",
+      description: "Наши материалы и ресурсы подготовлены опытными специалистами в области помощи жертвам насилия."
+    },
+    {
+      icon: <Users className="h-10 w-10 text-secondary" />,
+      title: "Сотрудничество",
+      description: "Мы верим в силу коллективной работы и обмена знаниями между специалистами."
+    },
+    {
+      icon: <HeartHandshake className="h-10 w-10 text-secondary" />,
+      title: "Поддержка",
+      description: "Мы обеспечиваем постоянную поддержку для всех, кто стремится помогать жертвам насилия."
+    }
+  ];
+
   return (
-    <section className="py-16 bg-muted">
+    <section className="py-16 md:py-24 bg-muted" id="about">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">О нас</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Наша миссия - создать безопасную и надежную платформу для специалистов, 
-            которые помогают жертвам насилия во всех его проявлениях.
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">О нас</h2>
+          <div className="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+          <p className="text-lg max-w-3xl mx-auto">
+            Наша миссия — создать безопасную и надежную платформу для специалистов, 
+            которые помогают жертвам насилия. Мы объединяем знания, ресурсы и людей, 
+            чтобы сделать эту помощь более эффективной.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-          <Card className="hover-scale">
-            <CardHeader className="space-y-1">
-              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-2">
-                <Shield size={24} className="text-primary" />
-              </div>
-              <CardTitle>Честность</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>
-                Мы придерживаемся высоких этических стандартов и прозрачности во всех наших действиях и коммуникациях.
-              </CardDescription>
-            </CardContent>
-          </Card>
-
-          <Card className="hover-scale">
-            <CardHeader className="space-y-1">
-              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-2">
-                <Heart size={24} className="text-primary" />
-              </div>
-              <CardTitle>Конфиденциальность</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>
-                Мы обеспечиваем полную защиту данных и уважаем частную жизнь всех, кто обращается за помощью и поддержкой.
-              </CardDescription>
-            </CardContent>
-          </Card>
-
-          <Card className="hover-scale">
-            <CardHeader className="space-y-1">
-              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-2">
-                <LineChart size={24} className="text-primary" />
-              </div>
-              <CardTitle>Экспертиза</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>
-                Мы предоставляем только проверенную и актуальную информацию, основанную на научных исследованиях и лучших практиках.
-              </CardDescription>
-            </CardContent>
-          </Card>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {values.slice(0, 3).map((value, index) => (
+            <Card key={index} className="border-2 border-muted hover:border-secondary/50 transition-colors animate-scale-in" style={{ animationDelay: `${0.1 * index}s` }}>
+              <CardContent className="p-6">
+                <div className="flex flex-col items-center text-center">
+                  <div className="mb-4">{value.icon}</div>
+                  <h3 className="text-xl font-bold mb-2">{value.title}</h3>
+                  <p>{value.description}</p>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 max-w-3xl mx-auto">
+          {values.slice(3, 5).map((value, index) => (
+            <Card key={index + 3} className="border-2 border-muted hover:border-secondary/50 transition-colors animate-scale-in" style={{ animationDelay: `${0.1 * (index + 3)}s` }}>
+              <CardContent className="p-6">
+                <div className="flex flex-col items-center text-center">
+                  <div className="mb-4">{value.icon}</div>
+                  <h3 className="text-xl font-bold mb-2">{value.title}</h3>
+                  <p>{value.description}</p>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </section>

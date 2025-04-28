@@ -1,67 +1,83 @@
-import { DollarSign, HandHeart } from "lucide-react";
+import { Card, CardContent } from "./card";
 import { Button } from "./button";
-import { Card, CardContent, CardHeader, CardTitle } from "./card";
+import { DollarSign, HandHeart } from "lucide-react";
 
 const HelpSection = () => {
   return (
-    <section className="py-16 bg-primary/5">
+    <section className="py-16 md:py-24 bg-primary text-primary-foreground" id="help">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Как помочь</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Вы можете внести свой вклад в нашу миссию различными способами. 
-            Каждый вклад имеет значение и помогает нам поддерживать работу платформы.
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Как помочь</h2>
+          <div className="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+          <p className="text-lg max-w-3xl mx-auto text-primary-foreground/90">
+            Ваша поддержка помогает нам расширять наши ресурсы и оказывать более эффективную помощь жертвам насилия.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <Card className="border-2 border-primary/20 hover:border-primary/40 transition-colors">
-            <CardHeader className="pb-2">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                  <DollarSign size={20} className="text-primary" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {/* Пожертвования */}
+          <Card className="bg-white/10 border-0 backdrop-blur-sm animate-fade-in">
+            <CardContent className="p-8">
+              <div className="flex flex-col items-center text-center">
+                <div className="bg-secondary/20 p-5 rounded-full mb-6">
+                  <DollarSign className="h-12 w-12 text-secondary" />
                 </div>
-                <CardTitle className="text-2xl">Пожертвовать</CardTitle>
+                <h3 className="text-2xl font-bold mb-4">Пожертвовать</h3>
+                <p className="mb-6">
+                  Ваши пожертвования помогают нам создавать новые образовательные материалы, 
+                  проводить тренинги для специалистов и расширять нашу базу ресурсов.
+                </p>
+                <ul className="mb-6 text-left">
+                  <li className="flex items-start mb-2">
+                    <span className="text-secondary mr-2">✓</span>
+                    <span>Финансирование исследований о методах помощи</span>
+                  </li>
+                  <li className="flex items-start mb-2">
+                    <span className="text-secondary mr-2">✓</span>
+                    <span>Создание новых учебных материалов</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-secondary mr-2">✓</span>
+                    <span>Поддержка работы платформы и форума</span>
+                  </li>
+                </ul>
+                <Button variant="secondary" size="lg" className="w-full">
+                  Сделать пожертвование
+                </Button>
               </div>
-            </CardHeader>
-            <CardContent>
-              <p className="mb-6 text-muted-foreground">
-                Ваши пожертвования помогают нам развивать платформу, проводить обучающие 
-                мероприятия и предоставлять качественные ресурсы специалистам.
-              </p>
-              <div className="grid grid-cols-3 gap-2 mb-6">
-                <Button variant="outline" className="hover:bg-primary/5">300₽</Button>
-                <Button variant="outline" className="hover:bg-primary/5">500₽</Button>
-                <Button variant="outline" className="hover:bg-primary/5">1000₽</Button>
-              </div>
-              <Button className="w-full" variant="secondary">
-                Пожертвовать
-              </Button>
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-primary/20 hover:border-primary/40 transition-colors">
-            <CardHeader className="pb-2">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                  <HandHeart size={20} className="text-primary" />
+          {/* Волонтерство */}
+          <Card className="bg-white/10 border-0 backdrop-blur-sm animate-fade-in" style={{ animationDelay: "0.1s" }}>
+            <CardContent className="p-8">
+              <div className="flex flex-col items-center text-center">
+                <div className="bg-secondary/20 p-5 rounded-full mb-6">
+                  <HandHeart className="h-12 w-12 text-secondary" />
                 </div>
-                <CardTitle className="text-2xl">Волонтерство</CardTitle>
+                <h3 className="text-2xl font-bold mb-4">Волонтерство</h3>
+                <p className="mb-6">
+                  Станьте частью нашей команды волонтеров и внесите свой вклад в помощь 
+                  жертвам насилия, используя свои навыки и опыт.
+                </p>
+                <ul className="mb-6 text-left">
+                  <li className="flex items-start mb-2">
+                    <span className="text-secondary mr-2">✓</span>
+                    <span>Участие в разработке материалов</span>
+                  </li>
+                  <li className="flex items-start mb-2">
+                    <span className="text-secondary mr-2">✓</span>
+                    <span>Модерация форума экспертов</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-secondary mr-2">✓</span>
+                    <span>Помощь в организации мероприятий</span>
+                  </li>
+                </ul>
+                <Button variant="outline" size="lg" className="w-full border-white text-white hover:bg-white/10">
+                  Стать волонтером
+                </Button>
               </div>
-            </CardHeader>
-            <CardContent>
-              <p className="mb-6 text-muted-foreground">
-                Станьте частью нашей команды волонтеров. Мы предлагаем различные 
-                возможности для участия в зависимости от ваших навыков и доступного времени.
-              </p>
-              <ul className="list-disc pl-5 mb-6 text-muted-foreground">
-                <li>Модерация форума</li>
-                <li>Перевод материалов</li>
-                <li>Организация мероприятий</li>
-              </ul>
-              <Button className="w-full">
-                Стать волонтером
-              </Button>
             </CardContent>
           </Card>
         </div>
